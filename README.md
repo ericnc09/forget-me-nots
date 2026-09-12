@@ -1,8 +1,8 @@
 # Forget-me-nots
 
-A Slack agent prototype for the **Agents, Everywhere** hackathon. The current runnable app is [apps/forgetme-nots](apps/forgetme-nots/README.md). It connects a Google ADK orchestrator to LangGraph/OpenAI research and Google ADK analysis agents through A2A and CopilotKit Channels.
+A Slack agent prototype for the **Agents, Everywhere** hackathon. The current runnable app is [apps/forgetme-nots](apps/forgetme-nots/README.md). Web and Slack use one Google ADK assistant through AG-UI and CopilotKit Channels. Commit `813e46b` removed the specialized research/analysis agents and A2A routing.
 
-The current build is a research starter with setup and compatibility fixes. The FollowThrough task tracking, reminders, Teams, and Outlook draft workflows in [the planning documents](docs/planning/README.md) are proposed work, not implemented capabilities. Running or renaming a starter alone does not establish a new hackathon submission.
+The current build is a single-assistant proof of concept with setup and compatibility fixes. The FollowThrough task tracking, reminders, Teams, and Outlook draft workflows in [the planning documents](docs/planning/README.md) are proposed work, not implemented capabilities. Running or renaming a starter alone does not establish a new hackathon submission.
 
 ## Get started
 
@@ -19,12 +19,12 @@ agents/.venv/bin/python -m pip install -r agents/requirements.txt
 cp .env.example .env
 ```
 
-Set `GOOGLE_API_KEY`, `OPENAI_API_KEY`, and `CPK_INTELLIGENCE_API_KEY` in `apps/forgetme-nots/.env`. Use a project-scoped CopilotKit key for the project containing the declared Channel `forgetme-nots`. Managed provider credentials remain in CopilotKit Intelligence. Never commit actual credentials. Existing configured users should preserve their `.env` instead of copying the example over it.
+Set `GOOGLE_API_KEY` and `CPK_INTELLIGENCE_API_KEY` in `apps/forgetme-nots/.env`. Use a project-scoped CopilotKit key for the project containing the declared Channel `forgetme-nots`. Managed provider credentials remain in CopilotKit Intelligence. Never commit actual credentials. Existing configured users should preserve their `.env` instead of copying the example over it.
 
 From the repository root, use two terminals:
 
 ```bash
-# Terminal 1: UI and three Python agent services
+# Terminal 1: UI and the single Python assistant
 npm run dev:forgetme-nots
 ```
 
@@ -33,7 +33,7 @@ npm run dev:forgetme-nots
 npm run channel:forgetme-nots
 ```
 
-The listener should report `Channel "forgetme-nots" is online.` The UI is at `http://localhost:3000`; the orchestrator, research, and analysis services use ports 9000, 9001, and 9002. The inherited web template uses port 3100 and is a separate app.
+The listener should report `Channel "forgetme-nots" is online.` The UI is at `http://localhost:3000`; the assistant uses port 9000. The active app does not start services on ports 9001 or 9002. The inherited web template uses port 3100 and is a separate app.
 
 Invite the app in your Slack test channel, then select it from the mention dropdown:
 
@@ -67,13 +67,13 @@ cd apps/forgetme-nots
 npm run smoke:agent
 ```
 
-It sends a synthetic greeting through the same agent factory used by Slack, makes a real model call, and fails on an error or empty response. Full research/analysis delegation and a successful Slack reply after the model fix still need live verification. See [validation evidence](docs/VALIDATION.md).
+It sends a synthetic greeting through the same agent factory used by Slack, makes a real model call, and fails on an error or empty response. A successful real Slack reply, subscribed follow-up behavior, and unrelated-conversation silence still need live verification. See [validation evidence](docs/VALIDATION.md).
 
 ## Repository map
 
 | Path | What it contains |
 | --- | --- |
-| `apps/forgetme-nots/` | Active generated Slack/A2A app, compatibility fixes, and Gemini model configuration |
+| `apps/forgetme-nots/` | Active single ADK assistant, Slack/web integration, and Gemini model configuration |
 | `apps/channel/`, `apps/web/`, `apps/mobile/`, `packages/` | Inherited CopilotKit hackathon templates and tests |
 | `tools/exa-search/` | Standalone Python Exa retrieval helper; not registered as a tool in the active app |
 | `docs/planning/` | FollowThrough brief, competitor notes, and Toronto planning; proposed functionality |

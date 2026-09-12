@@ -2,7 +2,7 @@
 
 ## Active Forget-me-nots app
 
-The app under `apps/forgetme-nots` is installed separately from the inherited templates described below. Its `.env` uses `CPK_INTELLIGENCE_API_KEY`, `OPENAI_API_KEY`, and `GOOGLE_API_KEY`. CopilotKit hosts the managed Slack connection; Gemini/ADK supplies orchestration and analysis, and LangGraph/OpenAI supplies the research backend. Gemini is an additional stack choice, not a sponsor claim. Current Google model defaults are `gemini-3.6-flash`, configurable through `ORCHESTRATOR_MODEL` and `GEMINI_MODEL`; the older generated defaults failed with this account. Account availability and quota need verification for any model change.
+The app under `apps/forgetme-nots` is installed separately from the inherited templates described below. Its `.env` uses `CPK_INTELLIGENCE_API_KEY` and `GOOGLE_API_KEY`. CopilotKit hosts the managed Slack connection; Gemini/ADK supplies the single assistant. Commit `813e46b` removed the active LangGraph/OpenAI research backend and A2A routing. Gemini is an additional stack choice, not a sponsor claim. The current Google model default is `gemini-3.6-flash`, configurable through `ORCHESTRATOR_MODEL`; the older generated defaults failed with this account. Account availability and quota need verification for any model change.
 
 From the repository root, start `npm run dev:forgetme-nots` and `npm run channel:forgetme-nots` in separate terminals. With the services running, `npm --prefix apps/forgetme-nots run smoke:agent` proves a synthetic greeting through the local agent middleware and makes a real model call. Real Slack reply validation remains separate. See the [project quickstart](README.md#get-started) and [observed results](docs/VALIDATION.md).
 

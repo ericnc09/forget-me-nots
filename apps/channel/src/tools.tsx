@@ -21,6 +21,7 @@ import {
 } from "@copilotkit/channels";
 import type { InteractionContext } from "@copilotkit/channels";
 export { searchTheWeb } from "./search";
+import { readMarkdownFile } from "./google-drive";
 import { z } from "zod";
 
 /**
@@ -37,6 +38,16 @@ export const readThread = defineChannelTool({
       return "This surface does not expose conversation history, or the thread is empty. Say that you cannot see earlier messages and ask for the shortest possible summary.";
     }
     return messages;
+  },
+});
+
+/** Read the project's canonical Markdown context from Google Drive. */
+export const readProjectMarkdown = defineChannelTool({
+  name: "read_project_markdown",
+  description: "Read the project's Markdown file from Google Drive.",
+  parameters: z.object({}),
+  async handler() {
+    return await readMarkdownFile();
   },
 });
 

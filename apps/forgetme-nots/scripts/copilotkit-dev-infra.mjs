@@ -10,7 +10,7 @@ import { existsSync, readFileSync } from 'node:fs';
 const REQUIRED_ENV_KEYS = [
   {
     "key": "GOOGLE_API_KEY",
-    "note": "Required by the ADK assistant.",
+    "note": "Required by the single ADK assistant.",
     "url": "https://aistudio.google.com/apikey",
     "example": "AIza..."
   }
@@ -22,12 +22,7 @@ const REQUIRED_ENV_KEYS = [
  * mismatch. Derived from MOCK_PROVIDERS; expand by adding a row there.
  * Shape: { [keyVar]: { baseUrlVar: string, baseUrl: string } }
  */
-const MOCK_PROVIDER_BASE_URLS = {
-  "OPENAI_API_KEY": {
-    "baseUrlVar": "OPENAI_BASE_URL",
-    "baseUrl": "http://127.0.0.1:4010/v1"
-  }
-};
+const MOCK_PROVIDER_BASE_URLS = {};
 
 /**
  * Hosted CopilotKit Intelligence env var NAMES this scaffold was generated with

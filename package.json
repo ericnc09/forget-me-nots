@@ -24,7 +24,7 @@
     "verify": "npm run typecheck && npm test && npm run verify:forgetme-nots",
     "dev:forgetme-nots": "npm --prefix apps/forgetme-nots run dev",
     "channel:forgetme-nots": "npm --prefix apps/forgetme-nots run channel",
-    "verify:forgetme-nots": "npm --prefix apps/forgetme-nots run typecheck:channel && python3 -m py_compile apps/forgetme-nots/agents/orchestrator.py apps/forgetme-nots/agents/research_agent.py apps/forgetme-nots/agents/analysis_agent.py"
+    "verify:forgetme-nots": "npm --prefix apps/forgetme-nots run typecheck:channel && python3 -m py_compile apps/forgetme-nots/agents/orchestrator.py"
   },
   "overrides": {
     "@ag-ui/client": "0.0.59"
