@@ -6,9 +6,9 @@ Files in this repository are the source of truth; this file is the live index an
 
 ### Where we are
 
-Forget-me-nots is a CopilotKit Slack / Channels prototype. The active app is `apps/forgetme-nots`; it currently routes research requests through a Google ADK orchestrator, a LangGraph/OpenAI research agent, and a Google ADK analysis agent. The repository at `https://github.com/ericnc09/forget-me-nots` was synchronized on 2026-09-12: commit `2034a04` on `jerel/app-layout-cleanup`. Clean installs, 93 inherited tests, workspace and active-channel typechecks, Python syntax checks, a production build, and a synthetic greeting passed. Successful real Slack replies after the Gemini fix and full delegation remain unverified. The user confirmed this progress-document skeleton and clarified that progress context must differ for every user inside a Slack channel. This file is the shared development handoff, not a deployed user's private record. No per-user progress persistence, loading, updating, or access enforcement is implemented. Current task: establish this handoff and record that requirement. Proposed next work: verify Slack delivery, then propose and confirm the identity/storage/update contract for per-user progress. The repository records the global event dates as 2026-09-12–2026-09-13; the applicable local submission deadline and official build window are TBD.
+Forget-me-nots is a CopilotKit Slack / Channels proof of concept using one Google ADK assistant for Slack and web. The user explicitly requested fixing the runtime to match commit `813e46b`, which removed specialized research/analysis agents and A2A routing. The merged source baseline is `6b7ea4d` on `jerel/app-layout-cleanup`; the canonical local Git checkout is on `codex/run-single-agent`, tracking that remote branch. Root verification now compiles only the remaining assistant, and generated preflight no longer requires the removed OpenAI research backend. Clean Node/Python installs, dependency consistency, assistant initialization, and root verification passed. Runtime replacement, production build, and a 50-character single-agent greeting passed; the managed Slack listener is online. Ports 9001/9002 are unused and no research/analysis processes remain. Current observations are in `docs/VALIDATION.md`. Earlier 93-test/build/greeting evidence remains historical. Successful real Slack responses, subscription/silence behavior, hosted web thread operations, and per-user progress storage remain unverified. The user confirmed one progress skeleton with distinct context for every Slack user. This root file is the shared development handoff, not a private user's deployed record. No per-user progress persistence, retrieval, updating, or access enforcement is implemented. Next: verify a real Slack interaction, then align and confirm the per-user identity/storage/update contract. Source event dates are 2026-09-12–2026-09-13; the applicable local deadline and build-window confirmation are TBD.
 
-Repository checkout: `/Users/eric/Documents/ChatGPT/planned projects/forget-me-nots`. Earlier configured source folders remain outside this checkout: `/Users/eric/Documents/ChatGPT/planned projects/forgetme-nots` (active setup), `forgetme-not` (earlier scaffold), `agents-everywhere-starter-kit`, and `exa-search`. Private environment files were not copied to the published checkout. Do not assume any service is currently running or that this checkout is authenticated; inspect process/endpoint state and local configuration before starting duplicate services.
+Canonical repository: `/Users/eric/Documents/ChatGPT/planned projects/forget-me-nots`; active runtime directory: `apps/forgetme-nots`. The original `/Users/eric/Documents/ChatGPT/planned projects/forgetme-nots` path now aliases the canonical active app, so commands using that path load the single assistant. The obsolete standalone code is preserved at `/Users/eric/Documents/ChatGPT/planned projects/forgetme-nots-pre-single-agent-backup`; do not run that backup. Its private environment was preserved in the canonical app and remains ignored by Git. The inherited `/Users/eric/Documents/ChatGPT/planned projects/agents-everywhere-starter-kit` checkout remains on `main`; it is not the active app. Inspect actual process state before starting duplicate services.
 
 ### Parked / not yet confirmed
 
@@ -22,7 +22,7 @@ Repository checkout: `/Users/eric/Documents/ChatGPT/planned projects/forget-me-n
 - Storage backend, physical file paths, retention, deletion, backup, and access boundaries for user-specific records. The approved logical filename does not select a physical storage design.
 - Who can read or edit a user's record, whether/how users share progress, project ownership, onboarding, migration, and channel-visible output.
 - Commands/triggers for generating a record, updating progress, confirming decisions, and showing diffs in Slack; whether the document skill is ever invoked by the runtime.
-- Proposed next sequence: successful real Slack greeting → propose user identity and record lifecycle → align → obtain confirmation → implement one vertical slice. This is a recommendation, not authorization to silently lock architecture.
+- Proposed sequence after the authorized runtime fix: successful real Slack greeting → propose user identity and record lifecycle → align → obtain confirmation → implement one vertical slice. This does not lock the unresolved architecture.
 - Eligibility, exact submission deadline, final domain workflow, user evaluation, video, and social submission.
 
 ### To resume (do exactly this)
@@ -32,7 +32,7 @@ Repository checkout: `/Users/eric/Documents/ChatGPT/planned projects/forget-me-n
 3. Read `apps/forgetme-nots/AGENTS.md`, `apps/forgetme-nots/README.md`, `.agents/skills/build-channels-agent/SKILL.md`, then its identity/adapter and approval references when needed.
 4. Read `docs/VALIDATION.md`, `apps/forgetme-nots/channels.mts`, `channel-host.mts`, and `app/agent.ts`. Identify verified platform identity APIs. A conversation thread ID alone does not demonstrate a user's private progress boundary.
 5. Read `docs/planning/README.md`, the consolidated build prompt, competitor notes, and Toronto brief as proposed reference material. Their imperative wording does not confirm a platform migration or start that build.
-6. Inspect local configuration without displaying secrets, and check ports 3000/9000/9001/9002 before starting. For the configured active app, root commands are `npm run dev:forgetme-nots` and, in a separate terminal, `npm run channel:forgetme-nots`. A clean checkout needs both Node installs, the Python environment, and its own private credentials as documented in README.
+6. Inspect local configuration without displaying secrets, and check ports 3000/9000 before starting; ports 9001/9002 must remain unused by this app. For the configured active app, root commands are `npm run dev:forgetme-nots` and, in a separate terminal, `npm run channel:forgetme-nots`. A clean checkout needs both Node installs, the Python environment, and its own private credentials as documented in README.
 7. Propose a bounded real Slack delivery check and a per-user progress contract covering authenticated identity, project scope, ownership, persistence, retrieval, confirmation, and update/diff behavior. Align with the user, then explicitly confirm unresolved choices before recording them as locked. Do not send messages to other people without explicit authorization.
 8. After confirmation, implement and verify the smallest relevant vertical slice. Keep verified results distinct from user acceptance. Update this handoff using the house rules; do not mark planned product behavior as implemented.
 
@@ -44,6 +44,7 @@ Earlier explicit user instructions below are preserved from supplied notes; thei
 - Date TBD — Surface: select the Slack / Channels agent.
 - Date TBD — App: use the user-created `forgetme-nots`; starting and connecting the app was explicitly authorized.
 - Date TBD — Repository: sync existing work to `ericnc09/forget-me-nots` and follow the five supplied hackathon/convention/Channels references.
+- 2026-09-12 — Runtime: use the single ADK assistant from commit `813e46b`; remove the old research/analysis services and A2A route from the running app.
 - 2026-09-12 — Step 3a: create a single standalone `progress.md` at this repository root using the approved structure; do not install it inside agents.
 - 2026-09-12 — Step 3b: the progress skeleton is shared, but each Slack user's progress context must be different. Storage, access policy, and implementation are not selected.
 - 2026-09-12 — Change evidence: use per-file historical summaries and exact Git diff references, with compact embedded patches for subsequent changes.
@@ -108,11 +109,9 @@ Paths below are relative to the repository root. One row covers each tracked rea
 | `apps/forgetme-nots/.gitignore` | Version-control exclusions | Active prototype; per-user progress absent |
 | `apps/forgetme-nots/AGENTS.md` | App-specific editing and verification guidance | Active prototype; per-user progress absent |
 | `apps/forgetme-nots/README.md` | Documentation / reference: README.md | Active prototype; per-user progress absent |
-| `apps/forgetme-nots/agents/analysis_agent.py` | Google ADK analysis A2A service | Active prototype; per-user progress absent |
-| `apps/forgetme-nots/agents/orchestrator.py` | Google ADK orchestrator and AG-UI service | Active prototype; per-user progress absent |
-| `apps/forgetme-nots/agents/requirements.txt` | Pinned Python dependencies | Active prototype; per-user progress absent |
-| `apps/forgetme-nots/agents/research_agent.py` | LangGraph/OpenAI research A2A service | Active prototype; per-user progress absent |
-| `apps/forgetme-nots/app/agent.ts` | A2A agent factory and isolated middleware runs | Active prototype; per-user progress absent |
+| `apps/forgetme-nots/agents/orchestrator.py` | Single Google ADK assistant and AG-UI service | Active prototype; per-user progress absent |
+| `apps/forgetme-nots/agents/requirements.txt` | Pinned single-assistant Python dependencies | Active prototype; per-user progress absent |
+| `apps/forgetme-nots/app/agent.ts` | Single HttpAgent factory for Slack/web | Active prototype; per-user progress absent |
 | `apps/forgetme-nots/app/api/copilotkit/[[...slug]]/route.ts` | Implementation source: route.ts | Active prototype; per-user progress absent |
 | `apps/forgetme-nots/app/globals.css` | UI styling: globals.css | Active prototype; per-user progress absent |
 | `apps/forgetme-nots/app/layout.tsx` | UI or Channels component source: layout.tsx | Active prototype; per-user progress absent |
@@ -120,9 +119,6 @@ Paths below are relative to the repository root. One row covers each tracked rea
 | `apps/forgetme-nots/app/page.tsx` | UI or Channels component source: page.tsx | Active prototype; per-user progress absent |
 | `apps/forgetme-nots/channel-host.mts` | Managed listener lifecycle | Active prototype; per-user progress absent |
 | `apps/forgetme-nots/channels.mts` | Channel declaration, platform identity, and message handler | Active prototype; per-user progress absent |
-| `apps/forgetme-nots/components/a2a/MessageFromA2A.tsx` | UI or Channels component source: MessageFromA2A.tsx | Active prototype; per-user progress absent |
-| `apps/forgetme-nots/components/a2a/MessageToA2A.tsx` | UI or Channels component source: MessageToA2A.tsx | Active prototype; per-user progress absent |
-| `apps/forgetme-nots/components/a2a/agent-styles.ts` | Implementation source: agent-styles.ts | Active prototype; per-user progress absent |
 | `apps/forgetme-nots/components/chat.tsx` | UI or Channels component source: chat.tsx | Active prototype; per-user progress absent |
 | `apps/forgetme-nots/demo.png` | Inherited/reference image, logo, or demo asset | Active prototype; per-user progress absent |
 | `apps/forgetme-nots/next.config.ts` | Build, runtime, or tool configuration | Active prototype; per-user progress absent |
@@ -345,17 +341,17 @@ Paths below are relative to the repository root. One row covers each tracked rea
 
 ## State of the design so far (durable facts a cold session needs)
 
-**Project and confirmed surface.** Forget-me-nots is being developed as an agent inside Slack using CopilotKit. The active runnable implementation is a generated research starter, not yet a project-management product. A PM/delivery-lead follow-up workflow is described in planning files but is not confirmed as the final product. The repository is the shared development source for the project; a user's individual record must describe that user's project and supported facts rather than copying this development briefing.
+**Project and confirmed surface.** Forget-me-nots is being developed as an agent inside Slack using CopilotKit. The active runnable implementation is one Google ADK assistant for Slack and web, not yet a project-management product. The user confirmed replacing the old multi-agent runtime with commit `813e46b`. A PM/delivery-lead follow-up workflow is described in planning files but is not confirmed as the final product. The repository is the shared development source for the project; a user's individual record must describe that user's project and supported facts rather than copying this development briefing.
 
 **User-specific progress is the confirmed new requirement.** Every Slack user must have distinct progress context built from the same document skeleton. An instance needs a source-backed project description, where its files live, current state and deadline, confirmed decisions, parked proposals, resumable instructions, file map, steps, append-only decisions, and file-change evidence. The owner identity, project scope, source location, physical storage, permissions, and persistence contract are currently TBD. The skeleton requirement neither mandates a global channel record nor chooses one file per user on a local disk. Implementation must wait for those unresolved design choices to be aligned and confirmed.
 
 **Document role and lifecycle are locked.** This root file is the live development index and handoff, written as a standalone document/skill specification. It is not installed in agent directories and is not injected into agent system prompts by this change. A fresh session should understand the current project from this file, then follow the literal source-reading instructions before acting. Locked and proposed records remain separate; absence of evidence is recorded as TBD. Checkpoints have the deliberately narrow update scope in House rules. Individual users may have different projects and decisions while retaining this structure.
 
-**Confirmed repository scope; observed implementation.** The user authorized syncing all existing project work and preserving the supplied conventions. The published baseline is commit `2034a04` on `jerel/app-layout-cleanup`. The active app has its own Node lockfile/install and private environment, separate from inherited `apps/channel`, `apps/web`, and `apps/mobile`. Its Channels 0.9.2 / Runtime 1.70.2 pair and AG-UI client/core 0.0.59 overrides are current tested configuration. Python uses A2A SDK 0.3.26 rather than the unrelated `a2a` distribution or incompatible 1.x API. Google orchestration and analysis default to `gemini-3.6-flash`, overridable by `ORCHESTRATOR_MODEL` and `GEMINI_MODEL`. These are implementation facts to preserve until deliberately changed, not permanent user-confirmed architecture choices.
+**Confirmed repository scope; observed implementation.** The user authorized synchronizing existing work and preserving repository conventions, then requested the runtime fix to match `813e46b`. That commit is merged in remote baseline `6b7ea4d`. The canonical app keeps its independent Node install, Channels 0.9.2 / Runtime 1.70.2 pair, and AG-UI client/core 0.0.59 overrides. The active factory now returns `HttpAgent` for the single AG-UI endpoint on port 9000. Application-level A2A middleware, LangGraph research, and analysis services were removed. ADK dependencies may still include SDK libraries transitively; installed libraries do not register specialized agents. The assistant defaults to `gemini-3.6-flash`, overridable by `ORCHESTRATOR_MODEL`. These package/model settings remain implementation facts rather than permanent architecture choices.
 
-**Observed identity and agent boundary.** The active `channels.mts` passes `identifyUser: "platform"`, constructs agents with a supplied conversation thread ID, and runs them from an inherited `onMessage` handler. `app/agent.ts` constructs a fresh inner A2A middleware agent per run and preserves cloning. No source file currently reads/writes progress Markdown or selects a user's progress record. Per-run state isolation and platform identity configuration are useful existing infrastructure, but do not prove persisted per-user progress or prevent cross-user record access. The generated web identity remains a demo stub with unverified multi-user behavior.
+**Observed identity and agent boundary.** `channels.mts` retains `identifyUser: "platform"`, creates a fresh HTTP agent for the supplied conversation thread, and drives it from the inherited `onMessage` handler. The Python assistant has no specialized research or analysis delegation tools. No source reads/writes progress Markdown or selects a user's record. Platform identity and thread separation are infrastructure, not evidence of durable per-user storage or authorization. The web identity remains a demo stub with unverified multi-user behavior.
 
-**Evidence and completion boundaries.** `docs/VALIDATION.md` records 2026-09-12 clean installs, 93 inherited offline tests, typechecks, Python syntax checks, production build, local service endpoints, managed listener connection, earlier Slack ingress/error delivery, and a successful synthetic greeting after replacing unavailable Gemini defaults. It does not record a successful post-fix real Slack response, complete research/analysis delegation, hosted web thread operations, user-record isolation, task persistence, native cards in this active app, scheduling, Teams, Outlook, or integrated Exa retrieval. Do not reinterpret a local greeting or inherited test suite as domain acceptance. No test results were regenerated merely for this Markdown addition.
+**Evidence and completion boundaries.** `docs/VALIDATION.md` preserves the original three-agent setup as historical evidence. For the single-assistant runtime repair, clean installs, dependency consistency, initialization, root verification, production build, canonical-process/port checks, managed listener online status, and a synthetic greeting have passed and are recorded there. Real Slack replies, hosted web thread operations, per-user isolation/persistence, scheduling, Teams, Outlook, native cards in this app, and integrated Exa remain unverified or unimplemented. Research/analysis delegation is no longer an active acceptance requirement. A greeting or inherited test suite does not establish domain acceptance.
 
 **Planning hierarchy and unresolved contradictions.** `docs/planning/README.md` calls the consolidated build prompt the successor to earlier recommendations. That is a documentary hierarchy, not evidence of user confirmation. The Toronto brief starts with one Teams channel thread, approval before drafting, and a minimal commitment watcher; later notes move to group-chat requests and automatic private drafts; the consolidated prompt adds task tracking, lifecycle, no-send controls, and a two-week review. These prescriptions differ from the confirmed Slack surface. Keep them available as proposals; do not silently execute the build prompt or transplant its choices into locked decisions.
 
@@ -367,15 +363,15 @@ Paths below are relative to the repository root. One row covers each tracked rea
 | --- | --- | --- | --- |
 | 1a | Establish CopilotKit and Slack / Channels scope | `README.md` | Done (confirmed by user) |
 | 1b | Use and start/connect the created `forgetme-nots` app | `apps/forgetme-nots/channels.mts` | In progress — startup authorized; end-to-end Slack success unverified |
-| 2a | Correct SDK/model compatibility and record checks | `apps/forgetme-nots/agents/requirements.txt`, `docs/VALIDATION.md` | In progress — implementation/checks observed; user acceptance not recorded |
+| 2a | Preserve compatible single-assistant environment and record checks | `apps/forgetme-nots/agents/requirements.txt`, `docs/VALIDATION.md` | In progress — offline/build/greeting checks passed; real Slack acceptance unverified |
 | 2b | Synchronize existing work to the requested GitHub repository | `README.md`, `SUBMISSION.md`, Git commit `2034a04` | In progress — published; user acceptance not explicitly recorded |
 | 3a | Confirm and create standalone progress skeleton | `progress.md` | Done (confirmed by user) — structure approved; initial file created |
 | 3b | Record distinct progress context for every Slack user | `progress.md` | Done (confirmed by user) — requirement only |
 | 3c | Select authenticated owner/project scope and storage/access contract | `progress.md` | Not started — decisions parked |
 | 3d | Implement per-user progress loading, updates, persistence, and diffs | TBD | Not started |
 | 3e | Verify two users in the same channel remain distinct across updates/restarts | TBD | Not started |
-| 4a | Verify successful real Slack greeting after compatibility fixes | `docs/VALIDATION.md` | Proposed, not locked |
-| 4b | Verify complete research → analysis and relevant failure behavior | `docs/VALIDATION.md` | Proposed, not locked |
+| 4a | Verify successful real Slack greeting with the single assistant | `docs/VALIDATION.md` | Proposed, not locked |
+| 4b | Switch runtime to confirmed single-assistant code and verify old services are absent | `apps/forgetme-nots/app/agent.ts`, `docs/VALIDATION.md` | Done (confirmed by user) — runtime fix requested; source/process/port/greeting checks passed |
 | 5a | Align and confirm target persona and one new core workflow | TBD | Proposed, not locked |
 | 5b | Implement and evaluate the confirmed domain workflow | TBD | Not started |
 | 6a | Confirm applicable deadline/build window and substantiate eligibility | `SUBMISSION.md` | Not started |
@@ -387,6 +383,10 @@ Legend: Not started · In progress · Proposed, not locked · Done (confirmed by
 ## Decision log
 
 Add new entries at the top; never edit or delete existing entries. Historical user-choice entries with no reliable confirmation timestamp use Date TBD. The 2026-09-12 go-ahead confirms the reviewed document structure and distinctions; parked items remain parked.
+
+### 2026-09-12 — **Run the single ADK assistant from commit 813e46b**
+
+Decided: fix the running app to use the referenced single-assistant implementation. Stop the old research/analysis services and A2A listener route; use the canonical Git checkout for subsequent starts. Rejected: continuing to restart the obsolete standalone multi-agent copy. Supersedes: the old research-first runtime and planned full research/analysis delegation checks. Per-user progress storage and all other parked product choices remain unconfirmed.
 
 ### 2026-09-12 — **One progress skeleton, distinct context for every Slack user**
 
@@ -405,6 +405,32 @@ Decided: synchronize existing project work to `ericnc09/forget-me-nots` and foll
 Decided: use CopilotKit, select the Slack / Channels agent, work with the user-created `forgetme-nots`, and start/connect it. Rejected: TBD; no permanent rejection of other scaffolds is evidenced. The earlier singular-name scaffold is retained reference material. Supersedes: the earlier setup preference for the existing starter as the only active app. Final platform migration, domain persona, and feature scope were not confirmed.
 
 ## File Changes
+
+### 2026-09-12 — Single-assistant runtime repair and source alignment
+
+Application routing and UI are the already merged `813e46b` code in source baseline `6b7ea4d`. The runtime fix stops the obsolete standalone services and starts the canonical Git checkout. The original `forgetme-nots` path is now a compatibility alias to that active app; old files are preserved in `forgetme-nots-pre-single-agent-backup`. Private `.env` and virtual-environment files remain ignored. This repair changes only the tracked files listed below. Earlier change records and decision entries are preserved.
+
+For the complete tracked patch, use `git diff 6b7ea4d -- <path>` before commit; after the repair commit, use `git show ':/Align runtime checks and handoff with single ADK assistant' -- <path>`. That revision identifies this repair by its unique commit subject. No earlier private-folder diff or secret settings are retained in the public document.
+
+| File | Change summary |
+| --- | --- |
+| `package.json` | Compile only the remaining assistant during active-app verification. |
+| `apps/forgetme-nots/scripts/copilotkit-dev-infra.mjs` | Require only the Google model key; remove obsolete OpenAI mock-base-URL metadata. |
+| `README.md` | Document one assistant, current credentials/ports, and remaining live verification. |
+| `SUBMISSION.md` | Preserve attribution to the original scaffold while labeling the active single-assistant scope accurately. |
+| `using-sponsor-tools.md` | Update active-app model/provider claims; keep inherited sponsor recipes. |
+| `docs/planning/README.md` | Identify the current single-assistant runtime; planned integrations remain proposed. |
+| `docs/VALIDATION.md` | Preserve historical checks and add observed canonical-runtime repair evidence. |
+| `progress.md` | Refresh current context, remove retired files from the live map, qualify steps, and add the confirmed runtime decision above prior entries. |
+
+```diff
+- verify:forgetme-nots: compile orchestrator.py, research_agent.py, analysis_agent.py
++ verify:forgetme-nots: compile only orchestrator.py
+- startup preflight: require OPENAI_API_KEY and GOOGLE_API_KEY
++ startup preflight: require GOOGLE_API_KEY
+- running source: old standalone forgetme-nots; UI + research + analysis + orchestrator
++ running source: canonical forget-me-nots/apps/forgetme-nots; UI + one ADK assistant
+```
 
 ### 2026-09-12 — Initial progress document
 

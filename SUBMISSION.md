@@ -12,7 +12,7 @@ Choose your city on the [global event page](https://aitinkerers.org/hackathons/g
 <!-- Include this starter kit and any reused examples. -->
 
 - CopilotKit Agents, Everywhere starter kit, its incident/finance templates, native components, tests, and sponsor recipes. Starter updates match upstream commit `86f547d`.
-- The CopilotKit CLI-generated A2A + AG-UI app now in `apps/forgetme-nots`, including Google ADK orchestration/analysis, LangGraph/OpenAI research, web UI, Channels lifecycle, and isolated agent middleware.
+- The original CopilotKit CLI-generated A2A + AG-UI scaffold, including Google ADK orchestration/analysis, LangGraph/OpenAI research, web UI, Channels lifecycle, and isolated agent middleware. The active `apps/forgetme-nots` app was simplified to one ADK assistant in commit `813e46b`; the specialized agents and A2A middleware are no longer part of its runtime.
 - The earlier singular-name A2UI scaffold in `dev-docs/scaffolds/forgetme-not`, retained as reference.
 
 These remain starter infrastructure. They are not evidence of a new project-specific core workflow.
@@ -29,7 +29,7 @@ FollowThrough product/competitor planning and the Exa helper are preserved as su
 **What you built**
 <!-- Explain the complete interaction your demo shows. -->
 
-**Working title:** Forget-me-nots. Current state: a managed Slack research prototype with setup and compatibility fixes. A complete project-specific demo has not yet been recorded or verified.
+**Working title:** Forget-me-nots. Current state: a single ADK assistant with managed Slack/web integration and compatibility fixes. A complete project-specific demo has not yet been recorded or verified.
 
 **Who it is for**
 <!-- Name a person in a concrete situation. -->
@@ -44,7 +44,7 @@ The intended product should use the surrounding conversation and later updates t
 **Sponsor technologies used**
 <!-- Name the tools you actually used and the visible contribution of each. -->
 
-CopilotKit: managed Slack attachment, Channel listener, and AG-UI routing. OpenAI: configured research backend, with full delegated live access still unverified. Google Gemini/ADK: additional non-sponsor orchestration/analysis backend; greeting verified. Exa: standalone retrieval helper, not connected to the active agent and no authenticated retrieval recorded. Auth0, Ambiguous AI, OpenRouter, and mobile remain inherited references, not completed integrations in the active app.
+CopilotKit: managed Slack attachment, Channel listener, and AG-UI routing. Google Gemini/ADK: additional non-sponsor single-assistant backend; earlier greeting verified. OpenAI: retained in inherited templates; the active research backend was removed by `813e46b`. Exa: standalone retrieval helper, not connected to the active agent and no authenticated retrieval recorded. Auth0, Ambiguous AI, OpenRouter, and mobile remain inherited references, not completed integrations in the active app.
 
 ## Evidence for the judging criteria
 
