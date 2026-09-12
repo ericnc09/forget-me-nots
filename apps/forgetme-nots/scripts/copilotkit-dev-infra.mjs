@@ -9,14 +9,8 @@ import { existsSync, readFileSync } from 'node:fs';
 /** Vendor API keys this scaffold needs before chat and generations will work. */
 const REQUIRED_ENV_KEYS = [
   {
-    "key": "OPENAI_API_KEY",
-    "note": "Required by the agent runtime.",
-    "url": "https://platform.openai.com/api-keys",
-    "example": "sk-..."
-  },
-  {
     "key": "GOOGLE_API_KEY",
-    "note": "Required by the ADK agents.",
+    "note": "Required by the ADK assistant.",
     "url": "https://aistudio.google.com/apikey",
     "example": "AIza..."
   }

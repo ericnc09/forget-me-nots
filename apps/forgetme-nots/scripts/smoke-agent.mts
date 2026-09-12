@@ -8,7 +8,7 @@ agent.setMessages([
   {
     id: randomUUID(),
     role: "user",
-    content: "Hello. Reply with one short greeting. Do not delegate this greeting.",
+    content: "Hello. Reply with one short greeting.",
   },
 ]);
 
