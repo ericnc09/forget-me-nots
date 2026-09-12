@@ -1,5 +1,11 @@
 # Notes for coding agents
 
+## Forget-me-nots project
+
+The active user-created app is `apps/forgetme-nots`; read its AGENTS.md and README before editing it. It has its own Node install and `.env`, separate from the inherited Slack/web workspaces. The earlier `dev-docs/scaffolds/forgetme-not` app is reference material. Preserve the tested dependency pairs in both apps. FollowThrough planning is in `docs/planning` and is not a statement of implemented functionality. Root `npm run verify` covers the inherited kit plus the active channel typecheck and Python syntax checks after both Node installs. Record live checks separately in `docs/VALIDATION.md`.
+
+The following conventions apply to the inherited kit, including `apps/channel`:
+
 Read [hackathon-overview.md](hackathon-overview.md), [hackathon-rules.md](hackathon-rules.md), and [using-sponsor-tools.md](using-sponsor-tools.md), then the chosen app README in `apps/channel`, `apps/web`, or `apps/mobile`. Build the team's own workflow; the incident app is infrastructure reference code.
 
 CopilotKit powers the Slack and web templates. The mobile starting point in `apps/mobile` has its own install and environment; follow its README for setup and checks.

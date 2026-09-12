@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "channels": [
+    {
+      "name": "forgetme-not",
+      "displayName": "forgetme-not",
+      "providers": {
+        "slack": {
+          "env": {
+            "botToken": "INTELLIGENCE_CHANNEL_FORGETME_NOT_SLACK_BOT_TOKEN",
+            "signingSecret": "INTELLIGENCE_CHANNEL_FORGETME_NOT_SLACK_SIGNING_SECRET"
+          }
+        }
+      }
+    }
+  ]
+}

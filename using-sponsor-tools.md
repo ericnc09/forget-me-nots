@@ -1,5 +1,13 @@
 # Using sponsor tools
 
+## Active Forget-me-nots app
+
+The app under `apps/forgetme-nots` is installed separately from the inherited templates described below. Its `.env` uses `CPK_INTELLIGENCE_API_KEY`, `OPENAI_API_KEY`, and `GOOGLE_API_KEY`. CopilotKit hosts the managed Slack connection; Gemini/ADK supplies orchestration and analysis, and LangGraph/OpenAI supplies the research backend. Gemini is an additional stack choice, not a sponsor claim. Current Google model defaults are `gemini-3.6-flash`, configurable through `ORCHESTRATOR_MODEL` and `GEMINI_MODEL`; the older generated defaults failed with this account. Account availability and quota need verification for any model change.
+
+From the repository root, start `npm run dev:forgetme-nots` and `npm run channel:forgetme-nots` in separate terminals. With the services running, `npm --prefix apps/forgetme-nots run smoke:agent` proves a synthetic greeting through the local agent middleware and makes a real model call. Real Slack reply validation remains separate. See the [project quickstart](README.md#get-started) and [observed results](docs/VALIDATION.md).
+
+`tools/exa-search` preserves the standalone Python retrieval helper; it is not registered in the generated app. The inherited Slack/web/mobile instructions below retain their own credential contracts and do not configure the generated app.
+
 One setup reference for the six sponsors featured in this kit. Choose the tools your workflow needs. **OpenAI** is the marquee sponsor; **CopilotKit and OpenRouter** share the next tier; **Exa, Auth0, and Ambiguous AI** provide additional capabilities. This is the kit's selected lineup; the [global event page](https://aitinkerers.org/hackathons/global/agents-everywhere) maintains the full event roster and links to each city's event.
 
 Use Node.js 22+. For Slack/web/mobile, run the homepage's clone/install steps and keep credentials in root `.env`. Never put keys in frontend code or a submission. `npm run verify` covers offline behavior, not live account access.

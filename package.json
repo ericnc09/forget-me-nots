@@ -1,9 +1,9 @@
 {
-  "name": "agents-everywhere-starter-kit",
+  "name": "forget-me-nots",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Starter kit for the Agents, Everywhere: Bots, Channels & More global hackathon.",
+  "description": "Forget-me-nots Slack prototype and inherited Agents, Everywhere starter kit.",
   "license": "MIT",
   "engines": {
     "node": ">=22"
@@ -21,7 +21,10 @@
     "typecheck": "npm run typecheck --workspaces --if-present",
     "dev:web": "npm run dev --workspace web",
     "test": "npm run test --workspaces --if-present",
-    "verify": "npm run typecheck && npm test"
+    "verify": "npm run typecheck && npm test && npm run verify:forgetme-nots",
+    "dev:forgetme-nots": "npm --prefix apps/forgetme-nots run dev",
+    "channel:forgetme-nots": "npm --prefix apps/forgetme-nots run channel",
+    "verify:forgetme-nots": "npm --prefix apps/forgetme-nots run typecheck:channel && python3 -m py_compile apps/forgetme-nots/agents/orchestrator.py apps/forgetme-nots/agents/research_agent.py apps/forgetme-nots/agents/analysis_agent.py"
   },
   "overrides": {
     "@ag-ui/client": "0.0.59"

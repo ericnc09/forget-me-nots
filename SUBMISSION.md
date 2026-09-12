@@ -11,22 +11,40 @@ Choose your city on the [global event page](https://aitinkerers.org/hackathons/g
 **What we inherited**
 <!-- Include this starter kit and any reused examples. -->
 
+- CopilotKit Agents, Everywhere starter kit, its incident/finance templates, native components, tests, and sponsor recipes. Starter updates match upstream commit `86f547d`.
+- The CopilotKit CLI-generated A2A + AG-UI app now in `apps/forgetme-nots`, including Google ADK orchestration/analysis, LangGraph/OpenAI research, web UI, Channels lifecycle, and isolated agent middleware.
+- The earlier singular-name A2UI scaffold in `dev-docs/scaffolds/forgetme-not`, retained as reference.
+
+These remain starter infrastructure. They are not evidence of a new project-specific core workflow.
+
 **What we built during the hackathon**
 <!-- Describe the new core interaction and point to its implementation. Running the supplied incident demo alone does not establish a new project. -->
+
+Observed in this September 12 setup session: configured the managed Slack Channel `forgetme-nots`; corrected SDK pairing and Python SDK compatibility; replaced unavailable Gemini defaults with an account-tested Gemini 3.6 Flash model; verified a synthetic greeting through the actual agent factory; prepared portable startup commands, an opt-in greeting smoke check, and validation records. See [validation evidence](docs/VALIDATION.md) for exact boundaries. The team must confirm the event's official build window before making eligibility claims.
+
+FollowThrough product/competitor planning and the Exa helper are preserved as supporting work. Their source documents predate this setup session. Teams/Outlook, task tracking, reminders, and the two-week review remain proposed capabilities. A new core interaction is still required before submitting this as a finished hackathon project.
 
 ## Title and description
 
 **What you built**
 <!-- Explain the complete interaction your demo shows. -->
 
+**Working title:** Forget-me-nots. Current state: a managed Slack research prototype with setup and compatibility fixes. A complete project-specific demo has not yet been recorded or verified.
+
 **Who it is for**
 <!-- Name a person in a concrete situation. -->
+
+Proposed user: a PM or delivery lead tracking follow-ups. Current runnable surface: a Slack test workspace. The planned Teams/Outlook scope has not been built.
 
 **Why the context matters**
 <!-- What did the agent know or do because it lived in this surface? -->
 
+The intended product should use the surrounding conversation and later updates to determine what still needs attention. The active app's setup proves message ingress and a local model response, not that domain behavior; context-dependent acceptance checks remain outstanding.
+
 **Sponsor technologies used**
 <!-- Name the tools you actually used and the visible contribution of each. -->
+
+CopilotKit: managed Slack attachment, Channel listener, and AG-UI routing. OpenAI: configured research backend, with full delegated live access still unverified. Google Gemini/ADK: additional non-sponsor orchestration/analysis backend; greeting verified. Exa: standalone retrieval helper, not connected to the active agent and no authenticated retrieval recorded. Auth0, Ambiguous AI, OpenRouter, and mobile remain inherited references, not completed integrations in the active app.
 
 ## Evidence for the judging criteria
 
