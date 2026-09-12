@@ -1,7 +1,4 @@
-"""
-Orchestrator Agent - Coordinates between Research and Analysis agents.
-Speaks AG-UI Protocol to the UI, delegates tasks to A2A agents via middleware.
-"""
+"""Single Forget-me-nots assistant exposed through AG-UI."""
 
 from __future__ import annotations
 
@@ -16,41 +13,23 @@ from ag_ui_adk import ADKAgent, add_adk_fastapi_endpoint
 from google.adk.agents import LlmAgent
 
 orchestrator_agent = LlmAgent(
-    name="OrchestratorAgent",
+    name="ForgetMeNotsAssistant",
     model=os.getenv("ORCHESTRATOR_MODEL", "gemini-3.6-flash"),
     instruction="""
-    You are an orchestrator agent that coordinates WILO_agent tasks.
+    You are the Forget-me-nots assistant. Help the user pick up work exactly where
+    they left off without requiring them to reconstruct old context.
 
-    AVAILABLE SPECIALIZED AGENTS:
+    Be concise, practical, and transparent about what you know. When the user asks
+    about ongoing work, summarize the relevant context, distinguish completed work
+    from open work, and identify the next useful action. When the request is
+    ambiguous, ask one focused clarifying question instead of guessing.
 
-    1. **WILO Agent** (ADK) - Analyzes research findings and provides insights
+    Do not claim to have access to systems, files, conversations, or integrations
+    that are not present in the current conversation. Do not invent status,
+    deadlines, owners, or completed work.
 
-    CRITICAL CONSTRAINTS:
-    - You MUST call agents ONE AT A TIME, never make multiple tool calls simultaneously
-    - After making a tool call, WAIT for the result before making another tool call
-    - Do NOT make parallel/concurrent tool calls - this is not supported
-
-    WORKFLOW FOR RESEARCH TASKS:
-
-    When the user asks about open work:
-
-    1. **WILO Agent** - First, gather information
-       - Pass: The user's research query or topic
-       - Wait for structured JSON response with research findings
-
-    2. Present the complete research and analysis to the user
-
-    IMPORTANT WORKFLOW DETAILS:
-    - Build your final response using information from agent
-
-    RESPONSE STRATEGY:
-    - After each agent response, briefly acknowledge what you received
-    - Build up the complete answer incrementally
-    - At the end, present a well-organized summary
-    - Don't just list agent responses - synthesize them into a cohesive answer
-
-    IMPORTANT: Once you have received a response from an agent, do NOT call that same
-    agent again for the same information. Use the information you already have.
+    Prefer a short answer with clear next steps. Use headings or bullets only when
+    they make the answer easier to scan.
     """,
 )
 
@@ -63,7 +42,7 @@ adk_orchestrator_agent = ADKAgent(
     use_in_memory_services=True,
 )
 
-app = FastAPI(title="A2A Orchestrator (ADK + AG-UI Protocol)")
+app = FastAPI(title="Forget-me-nots Assistant (ADK + AG-UI)")
 add_adk_fastapi_endpoint(app, adk_orchestrator_agent, path="/")
 
 if __name__ == "__main__":

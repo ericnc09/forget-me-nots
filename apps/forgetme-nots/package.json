@@ -2,13 +2,11 @@
   "name": "forgetme-nots",
   "version": "0.1.0",
   "private": true,
-  "description": "Managed Slack research prototype using CopilotKit Channels, Google ADK, LangGraph, and A2A.",
+  "description": "Managed Slack and web proof of concept using one Google ADK agent.",
   "scripts": {
-    "dev": "npm run dev:infra && concurrently --names \"UI,Orch,Research,Analysis\" --prefix-colors \"cyan,gray,green,blue\" \"npm run dev:ui\" \"npm run dev:orchestrator\" \"npm run dev:research\" \"npm run dev:analysis\"",
+    "dev": "npm run dev:infra && concurrently --names \"UI,Agent\" --prefix-colors \"cyan,gray\" \"npm run dev:ui\" \"npm run dev:orchestrator\"",
     "dev:ui": "next dev --turbopack",
     "dev:orchestrator": "agents/.venv/bin/python agents/orchestrator.py",
-    "dev:research": "agents/.venv/bin/python agents/research_agent.py",
-    "dev:analysis": "agents/.venv/bin/python agents/analysis_agent.py",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -18,8 +16,6 @@
     "smoke:agent": "node --import tsx scripts/smoke-agent.mts"
   },
   "dependencies": {
-    "@a2a-js/sdk": "latest",
-    "@ag-ui/a2a-middleware": "0.0.2",
     "@ag-ui/client": "0.0.59",
     "@ag-ui/core": "0.0.59",
     "@copilotkit/channels": "0.9.2",

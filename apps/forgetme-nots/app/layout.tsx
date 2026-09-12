@@ -15,8 +15,8 @@ const splineSansMono = Spline_Sans_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "A2A + AG-UI Starter",
-  description: "Multi-agent communication demo with A2A Protocol and AG-UI",
+  title: "Forget-me-nots Assistant",
+  description: "A single assistant for picking up work where you left off",
 };
 
 export default function RootLayout({

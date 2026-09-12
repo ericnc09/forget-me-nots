@@ -1,62 +1,7 @@
-# ============================================================================
-# A2A + AG-UI Starter - Python Agent Dependencies
-# ============================================================================
-
-# ============================================================================
-# AG-UI Protocol Implementation
-# ============================================================================
-# ag-ui-adk: Allows ADK agents to communicate with the frontend via AG-UI Protocol
-# This is used by the orchestrator agent to receive messages from the UI
+# Single AG-UI ADK assistant dependencies
 ag-ui-adk==0.7.0
-
-# ============================================================================
-# A2A Protocol Implementation
-# ============================================================================
-# a2a-sdk: A2A Protocol SDK including HTTP server support
-# These packages enable the Research and Analysis agents to communicate via A2A
-# The starter uses the 0.3 server API; 1.x removed a2a.server.apps.
-# The unrelated `a2a` distribution must not overwrite the SDK's namespace.
-a2a-sdk[http-server]==0.3.26
-
-# ============================================================================
-# Google ADK (Agent Development Kit)
-# ============================================================================
-# google-adk: Google's framework for building AI agents with Gemini models
-# Used by: Orchestrator Agent, Analysis Agent
-# litellm: Unified interface for multiple LLM providers (dependency of ADK)
 google-adk==2.9.0
 litellm==1.100.1
-
-# ============================================================================
-# LangGraph Framework
-# ============================================================================
-# langgraph: LangChain's framework for building stateful agent workflows
-# langchain: Core LangChain library for LLM applications
-# langchain-openai: OpenAI integration for LangChain
-# Used by: Research Agent
-langgraph==1.2.11
-langchain==1.4.0
-langchain-openai==1.6.2
-
-# ============================================================================
-# Web Server
-# ============================================================================
-# fastapi: Modern Python web framework for building agent HTTP endpoints
-# uvicorn: ASGI server for running FastAPI applications
-# All agents expose HTTP endpoints using FastAPI
 fastapi==0.141.1
 uvicorn==0.52.4
-
-# ============================================================================
-# Utilities
-# ============================================================================
-# python-dotenv: Loads environment variables from .env file
-# Used to configure API keys (GOOGLE_API_KEY, OPENAI_API_KEY)
 python-dotenv==1.2.3
-
-# ============================================================================
-# LLM Providers
-# ============================================================================
-# openai: OpenAI Python SDK for GPT models
-# Used by the Research Agent (LangGraph)
-openai==2.54.0
