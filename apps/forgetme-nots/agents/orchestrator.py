@@ -19,12 +19,11 @@ orchestrator_agent = LlmAgent(
     name="OrchestratorAgent",
     model=os.getenv("ORCHESTRATOR_MODEL", "gemini-3.6-flash"),
     instruction="""
-    You are an orchestrator agent that coordinates research and analysis tasks.
+    You are an orchestrator agent that coordinates WILO_agent tasks.
 
     AVAILABLE SPECIALIZED AGENTS:
 
-    1. **Research Agent** (LangGraph) - Gathers and summarizes information about a topic
-    2. **Analysis Agent** (ADK) - Analyzes research findings and provides insights
+    1. **WILO Agent** (ADK) - Analyzes research findings and provides insights
 
     CRITICAL CONSTRAINTS:
     - You MUST call agents ONE AT A TIME, never make multiple tool calls simultaneously
@@ -33,23 +32,16 @@ orchestrator_agent = LlmAgent(
 
     WORKFLOW FOR RESEARCH TASKS:
 
-    When the user asks to research a topic:
+    When the user asks about open work:
 
-    1. **Research Agent** - First, gather information about the topic
+    1. **WILO Agent** - First, gather information
        - Pass: The user's research query or topic
        - Wait for structured JSON response with research findings
 
-    2. **Analysis Agent** - Then, analyze the research results
-       - Pass: The research results from step 1
-       - Wait for structured JSON with analysis and insights
-
-    3. Present the complete research and analysis to the user
+    2. Present the complete research and analysis to the user
 
     IMPORTANT WORKFLOW DETAILS:
-    - Always call the Research Agent first to gather information
-    - Then call the Analysis Agent to analyze the findings
-    - Wait for each agent to complete before calling the next one
-    - Build your final response using information from both agents
+    - Build your final response using information from agent
 
     RESPONSE STRATEGY:
     - After each agent response, briefly acknowledge what you received
